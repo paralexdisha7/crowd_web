@@ -6,6 +6,18 @@ import streamlit as st
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 from PIL import Image
+import sys
+import subprocess
+
+required_packages = ["streamlit", "torch", "torchvision", "opencv-python", "numpy", "matplotlib", "PIL"]
+for package in required_packages:
+    try:
+        __import__(package)
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+import streamlit as st  # Now import after installing dependencies
+
 
 # Load CSRNet Model
 class CSRNet(torch.nn.Module):
